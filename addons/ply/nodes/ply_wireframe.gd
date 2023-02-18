@@ -6,6 +6,7 @@ extends MeshInstance3D
 var m = StandardMaterial3D.new()
 
 func _ready() -> void:
+	cast_shadow = ShadowCastingSetting.SHADOW_CASTING_SETTING_OFF
 	mesh = ImmediateMesh.new()
 	m.albedo_color = Color.WHITE
 	# m.flags_no_depth_test = true # enable for xray

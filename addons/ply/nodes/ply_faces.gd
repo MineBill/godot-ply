@@ -6,6 +6,7 @@ extends MeshInstance3D
 var m = StandardMaterial3D.new()
 
 func _ready() -> void:
+	cast_shadow = ShadowCastingSetting.SHADOW_CASTING_SETTING_OFF
 	mesh = ImmediateMesh.new()
 	m.albedo_color = Color(0, 1, 0, 0.5)
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
