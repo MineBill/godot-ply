@@ -22,8 +22,9 @@ func teardown() -> void:
 	_plugin.toolbar.selection_mode_changed.disconnect(_on_selection_mode_changed)
 
 
-func _on_selection_mode_changed(_mode) -> void:
+func _on_selection_mode_changed(mode) -> void:
 	_plugin.selection.select_geometry([], false)
+	_plugin.selection._on_selection_mode_changed(mode)
 
 
 func _point_to_segment_dist(v, a, b) -> float:

@@ -159,12 +159,14 @@ var selected: bool:
 			_compute_materials()
 			_vertices = Vertices.new()
 			_vertices.name = "ply_vertices"
+			_vertices.visible = false
 			add_child(_vertices)
 			_wireframe = Wireframe.new()
 			_wireframe.name = "ply_wireframe"
 			add_child(_wireframe)
 			_faces = Faces.new()
 			_faces.name = "ply_faces"
+			_faces.visible = false
 			add_child(_faces)
 var _wireframe: Wireframe
 var _vertices: Vertices
@@ -435,6 +437,18 @@ func get_ray_intersection(origin: Vector3, direction: Vector3, mode: int) -> Arr
 var selected_vertices: Array = []
 var selected_edges: Array = []
 var selected_faces: Array = []
+
+
+func _on_selection_mode_changed(mode) -> void:
+	_faces.visible = false
+	_wireframe.visible = true
+	_vertices.visible = false
+	match mode:
+		SelectionMode.FACE:
+			_faces.visible = true
+		SelectionMode.VERTEX:
+			_vertices.visible = true
+			
 
 
 func select_geometry(hits: Array, toggle: bool) -> void:
