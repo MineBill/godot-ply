@@ -81,18 +81,21 @@ var selection	# nullable PlyEditor
 
 
 func _edit(o: Variant) -> void:
-	assert(o is PlyEditor)
+	if o == null:
+		selection.selected = false
+		selection = null
+		emit_signal("selection_changed", null)
+		return
+
+	if selection:
+		selection.selected = false
 	selection = o
+	selection.selected = true
 	emit_signal("selection_changed", selection)
 
 
 func _make_visible(vis: bool) -> void:
 	toolbar.visible = vis
-	if selection:
-		selection.selected = vis
-	if not vis:
-		selection = null
-		emit_signal("selection_changed", null)
 
 
 var ignore_inputs = false
